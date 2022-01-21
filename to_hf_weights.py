@@ -457,7 +457,7 @@ def save_sharded_to_hf_format(
     dtype: str = "fp16",
 ):
 
-    devices = np.array([jax.devices()[0]]).reshape((1, 1))
+    devices = np.array([jax.devices()[1]]).reshape((1, 1))
     with maps.mesh(devices, ("dp", "mp")):
         params_local = params.copy()
         params_local["cores_per_replica"] = maps.thread_resources.env.shape["mp"]
